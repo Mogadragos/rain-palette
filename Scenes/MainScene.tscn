@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1r8g48dwp8gh"]
+
+[ext_resource type="Script" path="res://Scripts/CharacterMovement.gd" id="1_ck50q"]
+[ext_resource type="Texture2D" uid="uid://dmciqftu4m8v1" path="res://Sprites/Character.png" id="2_xydk5"]
+[ext_resource type="Script" path="res://Scripts/RainGenerator.gd" id="3_apsdw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bp4kt"]
+size = Vector2(97, 64)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="RainGenerator" type="Node" parent="."]
+script = ExtResource("3_apsdw")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+position = Vector2(400.5, 292)
+script = ExtResource("1_ck50q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+shape = SubResource("RectangleShape2D_bp4kt")
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
+texture = ExtResource("2_xydk5")
+
+[connection signal="ready" from="AnimatableBody2D" to="AnimatableBody2D" method="_on_ready"]
